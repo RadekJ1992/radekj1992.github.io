@@ -2,7 +2,9 @@
 <body>
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<div id="sankey_basic" style="width: 900px; height: 200px;"></div>
+<div id="sankey_basic1" style="width: 900px; height: 200px;"></div>
+<div id="sankey_basic2" style="width: 900px; height: 200px; margin-top: 200px"></div>
+<div id="sankey_multiple" style="width: 900px; height: 300px; margin-top: 200px"></div>
 
 <script type="text/javascript">
   google.charts.load("current", {packages:["sankey"]});
@@ -17,6 +19,32 @@
        [ 'Spain', 'Chile', 34 ],
        [ 'Spain', 'Uruguay', 5 ],
        [ 'Spain', 'Peru', 16 ]
+    ]);
+
+    var data2 = new google.visualization.DataTable();
+    data2.addColumn('string', 'From');
+    data2.addColumn('string', 'To');
+    data2.addColumn('number', 'Weight');
+    data2.addRows([
+       [ 'Argentina', 'Spain', 2 ],
+       [ 'Chile', 'Spain', 4 ],
+       [ 'Uruguay', 'Spain', 1 ],
+       [ 'Peru', 'Spain', 2 ]
+    ]);
+
+    var data3 = new google.visualization.DataTable();
+    data3.addColumn('string', 'From');
+    data3.addColumn('string', 'To');
+    data3.addColumn('number', 'Weight');
+    data3.addRows([
+       [ 'Spain', 'Argentina', 12 ],
+       [ 'Spain', 'Chile', 34 ],
+       [ 'Spain', 'Uruguay', 5 ],
+       [ 'Spain', 'Peru', 16 ],
+       [ 'Argentina', 'Spain ', 2 ],
+       [ 'Chile', 'Spain ', 4 ],
+       [ 'Uruguay', 'Spain ', 1 ],
+       [ 'Peru', 'Spain ', 2 ]
     ]);
 
     // Set chart options
@@ -37,8 +65,12 @@
 
 
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+    var chart = new google.visualization.Sankey(document.getElementById('sankey_basic1'));
     chart.draw(data, options);
+    var chart = new google.visualization.Sankey(document.getElementById('sankey_basic2'));
+    chart.draw(data2, options);
+    var chart = new google.visualization.Sankey(document.getElementById('sankey_multiple'));
+    chart.draw(data3, options);
    }
 </script>
 </body>
